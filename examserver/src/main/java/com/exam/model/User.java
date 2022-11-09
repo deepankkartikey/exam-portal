@@ -14,12 +14,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
+
+    private String password;
     private String firstName;
     private String lastName;
 
     private String email;
     private String phone;
     private String profile;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     private boolean enabled = true;
 
@@ -32,9 +42,10 @@ public class User {
     public User() {
     }
 
-    public User(long id, String username, String firstName, String lastName, String email, String phone, String profile, boolean enabled) {
+    public User(long id, String username, String password, String firstName, String lastName, String email, String phone, String profile, boolean enabled) {
         this.id = id;
         this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
