@@ -25,32 +25,32 @@ public class ExamserverApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Starting code ...");
 
-		// creating user object
-		User newUser = new User();
-		newUser.setFirstName("Deepank");
-		newUser.setLastName("Kartikey");
-		newUser.setUsername("dkart060");
-		newUser.setPassword("123456");
-		newUser.setEmail("dkart060@uottawa.ca");
-		newUser.setProfile("dkart.png");
-
-		// creating role object
-		Role role1 = new Role();
-		role1.setRoleId(14L);
-		role1.setRoleName("ADMIN");
-
-		// creating userrole object using user and role
-		Set<UserRole> userRoleSet = new HashSet<>();
-		UserRole userRole = new UserRole();
-		userRole.setRole(role1);
-		userRole.setUser(newUser);
-
-		userRoleSet.add(userRole);
-
-		// create user using the service
-		User user1 = this.userService.createUser(newUser, userRoleSet);
-
-		System.out.println(user1.getUsername());
+//		// creating user object
+//		User newUser = new User();
+//		newUser.setFirstName("Deepank");
+//		newUser.setLastName("Kartikey");
+//		newUser.setUsername("dkart060");
+//		newUser.setPassword("123456");
+//		newUser.setEmail("dkart060@uottawa.ca");
+//		newUser.setProfile("dkart.png");
+//
+//		// creating role object
+//		Role role1 = new Role();
+//		role1.setRoleId(14L);
+//		role1.setRoleName("ADMIN");
+//
+//		// creating userrole object using user and role
+//		Set<UserRole> userRoleSet = new HashSet<>();
+//		UserRole userRole = new UserRole();
+//		userRole.setRole(role1);
+//		userRole.setUser(newUser);
+//
+//		userRoleSet.add(userRole);
+//
+//		// create user using the service
+//		User user1 = this.userService.createUser(newUser, userRoleSet);
+//
+//		System.out.println(user1.getUsername());
 
 
 	}
