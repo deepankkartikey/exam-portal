@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {

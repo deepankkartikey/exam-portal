@@ -52,6 +52,5 @@ public class ExamserverApplication implements CommandLineRunner {
 //
 //		System.out.println(user1.getUsername());
 
-
 	}
 }
