@@ -1,1 +1,31 @@
-<h1>This is Navbar!</h1>
+<!-- <h1>This is Navbar!</h1> -->
+<mat-toolbar color="primary">
+  <a
+    routerLink="/"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu_book</mat-icon>
+  </a>
+  <span>Exam Portal</span>
+  <span class="example-spacer"></span>
+  <a
+    routerLink="/login"
+    mat-icon-button
+    class="example-icon login-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <!-- <mat-icon>login</mat-icon> -->
+    Login
+  </a>
+
+  <a
+    routerLink="/signup"
+    mat-icon-button
+    class="example-icon login-icon ml20 mr20"
+    aria-label="Example icon-button with heart icon"
+  >
+    Register
+  </a>
+</mat-toolbar>
