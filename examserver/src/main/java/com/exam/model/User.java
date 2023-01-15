@@ -35,7 +35,7 @@ public class User implements UserDetails {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -137,7 +137,7 @@ public class User implements UserDetails {
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 
     public void setEnabled(boolean enabled) {
