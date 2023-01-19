@@ -11,6 +11,7 @@
   <span>Exam Portal</span>
   <span class="example-spacer"></span>
   <a
+    *ngIf="!login.isLoggedIn()"
     routerLink="/login"
     mat-icon-button
     class="example-icon login-icon"
