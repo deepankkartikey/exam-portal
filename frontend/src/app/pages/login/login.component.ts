@@ -50,15 +50,29 @@ export class LoginComponent implements OnInit {
           (user: any)=>{
             this.login.setUserDetails(user)
             console.log(user)
-
             // redirect ... ADMIN: admin-dashboard
             // redirect ... NORMAL: normal-dashboard
+            if(this.login.getUserRole() == "ADMIN"){
+              // redirect to admin dashboard
+              window.location.href='/admin' // reloads all components
+            }
+            else if(this.login.getUser() == "NORMAL"){
+              // redirect normal user dashboard
+              window.location.href='/user-dashboard'
+            }
+            else{
+              // logout
+              this.login.logout();
+            }
           }
         )
       },
       (error)=>{
         console.log("error !")
         console.log(error)
+        this.snack.open("Invalid credentials! Try again!", '',{
+          duration:3000
+        })
       }
     )
 

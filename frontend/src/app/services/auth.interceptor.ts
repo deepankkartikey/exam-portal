@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor{
         // add jwt token from local storage to request
         let authReq = req;
         const token = this.login.getToken();
-        console.log("Inside INterceptor"+ req)
+        console.log("Inside INterceptor"+ JSON.stringify(req))
         if(token != null){
             authReq = authReq.clone({setHeaders: {Authorization: `Bearer ${token}`},
             })
