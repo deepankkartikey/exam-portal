@@ -22,11 +22,30 @@
   </a>
 
   <a
+    *ngIf="!isLoggedIn"
     routerLink="/signup"
     mat-icon-button
     class="example-icon login-icon ml20 mr20"
     aria-label="Example icon-button with heart icon"
   >
     Register
+  </a>
+  <a
+    *ngIf="isLoggedIn"
+    mat-icon-button
+    class="example-icon login-icon ml20 mr20"
+    aria-label="Example icon-button with heart icon"
+  >
+    {{ login.getUser().username }}
+  </a>
+
+  <a
+    (click)="logout()"
+    *ngIf="isLoggedIn"
+    mat-icon-button
+    class="example-icon login-icon ml20 mr20"
+    aria-label="Example icon-button with heart icon"
+  >
+    Logout
   </a>
 </mat-toolbar>
