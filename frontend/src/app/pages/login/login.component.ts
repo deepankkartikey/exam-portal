@@ -50,13 +50,15 @@ export class LoginComponent implements OnInit {
           (user: any)=>{
             this.login.setUserDetails(user)
             console.log(user)
+            console.log(this.login.getCurrentUser())
+            console.log(this.login.getUserRole())
             // redirect ... ADMIN: admin-dashboard
             // redirect ... NORMAL: normal-dashboard
             if(this.login.getUserRole() == "ADMIN"){
               // redirect to admin dashboard
               window.location.href='/admin' // reloads all components
             }
-            else if(this.login.getUser() == "NORMAL"){
+            else if(this.login.getUserRole() == "NORMAL"){
               // redirect normal user dashboard
               window.location.href='/user-dashboard'
             }

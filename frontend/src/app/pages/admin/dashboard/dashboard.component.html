@@ -1,1 +1,14 @@
-<h1>This is admin-dashboard!</h1>
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!-- <h3>Menu</h3> -->
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+        <!-- <h3>Content</h3> -->
+      </div>
+    </div>
+  </div>
+</div>
