@@ -1,1 +1,49 @@
-<h1>Your Profile Details!</h1>
+<mat-card>
+  <h1>Your Profile Details!</h1>
+  {{ user | json }}
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="container text-center">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU"
+            alt=""
+            class="profile-image"
+          />
+          <h1 class="mt20">Deepank Kartikey</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <!-- details table here-->
+            <table class="details-table text-center">
+              <tr>
+                <td>Username</td>
+                <td>myemail02</td>
+              </tr>
+              <tr>
+                <td>UserId</td>
+                <td>29</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>3437774779</td>
+              </tr>
+              <tr>
+                <td>Role</td>
+                <td>ADMIN</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>ACTIVE</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="text-center">
+    <button mat-raised-button color="primary">UPDATE</button>
+    <button mat-raised-button color="#3f51b5">SHARE</button>
+  </mat-card-actions>
+</mat-card>
