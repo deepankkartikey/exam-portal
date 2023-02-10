@@ -31,12 +31,13 @@
     Register
   </a>
   <a
-    *ngIf="isLoggedIn"
-    mat-icon-button
+    *ngIf="isLoggedIn && user"
     class="example-icon login-icon ml20 mr20"
+    mat-icon-button
+    routerLink="/admin/profile"
     aria-label="Example icon-button with heart icon"
   >
-    {{ login.getUser().username }}
+    {{ user['username'] }}
   </a>
 
   <a

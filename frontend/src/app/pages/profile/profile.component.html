@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card *ngIf="user">
   <h1>Your Profile Details!</h1>
-  {{ user | json }}
+  <!-- {{ user | json}} -->
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="container">
@@ -10,7 +10,7 @@
             alt=""
             class="profile-image"
           />
-          <h1 class="mt20">Deepank Kartikey</h1>
+          <h1 class="mt20">{{ user['firstName'] }} {{ user['lastName'] }}</h1>
         </div>
         <div class="row">
           <div class="col-md-10 offset-md-1">
@@ -18,23 +18,23 @@
             <table class="details-table text-center">
               <tr>
                 <td>Username</td>
-                <td>myemail02</td>
+                <td>{{ user['username'] }}</td>
               </tr>
               <tr>
                 <td>UserId</td>
-                <td>29</td>
+                <td>EXAM{{ user['id'] }}</td>
               </tr>
               <tr>
                 <td>Phone</td>
-                <td>3437774779</td>
+                <td>{{ user['phone'] }}</td>
               </tr>
               <tr>
                 <td>Role</td>
-                <td>ADMIN</td>
+                <td>{{ user['authorities'][0]['authority'] }}</td>
               </tr>
               <tr>
                 <td>Status</td>
-                <td>ACTIVE</td>
+                <td>{{ user['enabled'] ? "ACTIVE" : "NOT ACTIVE" }}</td>
               </tr>
             </table>
           </div>
