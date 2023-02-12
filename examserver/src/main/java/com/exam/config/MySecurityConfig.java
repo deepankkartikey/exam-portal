@@ -39,8 +39,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 
 
@@ -55,10 +55,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .disable()
-                .cors()
-                .disable()
+                .cors().disable()
                 .authorizeRequests()
-                .antMatchers("/generate-token", "/user/").permitAll()
+                .antMatchers("/generate-token", "/user/", "/category/").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()

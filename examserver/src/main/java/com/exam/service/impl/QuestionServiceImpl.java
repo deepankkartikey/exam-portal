@@ -5,10 +5,12 @@ import com.exam.model.exam.Quiz;
 import com.exam.repo.QuestionRepository;
 import com.exam.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class QuestionServiceImpl implements QuestionService {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -23,6 +25,13 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question updateQuestion(Question question) {
         return this.questionRepository.save(question);
+    }
+
+    @Override
+    public void deleteQuestion(Long questionId) {
+        Question question = new Question();
+        question.setQuesId(questionId);
+        this.questionRepository.delete(question);
     }
 
     @Override

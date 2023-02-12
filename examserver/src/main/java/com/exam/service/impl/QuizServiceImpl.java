@@ -4,10 +4,12 @@ import com.exam.model.exam.Quiz;
 import com.exam.repo.QuizRepository;
 import com.exam.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class QuizServiceImpl implements QuizService {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -36,6 +38,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void deleteQuiz(Long quizId) {
-        this.quizRepository.deleteById(quizId);
+        Quiz quiz = new Quiz();
+        quiz.setQid(quizId);
+        this.quizRepository.delete(quiz);
     }
 }

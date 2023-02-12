@@ -1,6 +1,7 @@
 package com.exam.service;
 
 import com.exam.model.exam.Quiz;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
