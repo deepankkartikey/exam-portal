@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-quiz',
@@ -11,9 +13,20 @@ export class AddQuizComponent implements OnInit {
     cid: 23,
     title: "Programming"
   }]
-  constructor() { }
+  constructor(private _category: CategoryService) { }
 
   ngOnInit(): void {
+    this._category.categories().subscribe(
+      // categories successfully loaded
+      (data: any)=>{
+        console.log(data)
+        this.categories = data
+      },
+      // issue while calling category service
+      (error)=>{
+        Swal.fire("Error !", "Error in Loading Categories", "error")
+      }
+    )
   }
 
 }
