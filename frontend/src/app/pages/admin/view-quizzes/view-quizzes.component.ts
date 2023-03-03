@@ -25,4 +25,18 @@ export class ViewQuizzesComponent implements OnInit {
     )
   }
 
+  deleteQuiz(quizId: any){
+    this._quiz.deleteQuiz(quizId).subscribe(
+    (data)=>{
+      this.quizzes = this.quizzes.filter((quiz)=>quiz['qid'] != quizId);
+      Swal.fire('Success', 'Quiz Deleted!', 'success');
+    },
+    (error)=>{
+      console.log(error)
+      Swal.fire('Error!', 'Error in deleting quiz!' ,'error');
+    }
+      
+    )
+  }
+
 }
