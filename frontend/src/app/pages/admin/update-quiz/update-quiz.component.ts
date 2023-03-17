@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -11,8 +11,10 @@ import Swal from 'sweetalert2';
 })
 export class UpdateQuizComponent implements OnInit {
 
-  constructor(private _route: ActivatedRoute, private _quiz: QuizService,
-    private _category: CategoryService) { }
+  constructor(private _route: ActivatedRoute, 
+    private _quiz: QuizService,
+    private _category: CategoryService,
+    private _router: Router) { }
 
   qId = 0;
   quiz: any;
@@ -49,7 +51,9 @@ export class UpdateQuizComponent implements OnInit {
   public updateQuiz(){
     this._quiz.updateQuiz(this.quiz).subscribe(
       (data: any)=>{
-        Swal.fire("Success !!", "Quiz updated", "success")
+        Swal.fire("Success !!", "Quiz updated", "success").then((e)=>{
+          this._router.navigate(['/admin/quizzes'])
+        })
       },
       (error)=>{
         Swal.fire("Error", "Error in Updating Quiz", "error")
