@@ -41,6 +41,18 @@
                         <p class="mt20"><b>Correct Answer: </b> {{ question['ans'] }} </p>
                     </div>
                 </mat-card-content>
+                <div class="container text-center">
+                    <button mat-raised-button class="ml20" color="primary"
+                        
+                        >
+                        Update
+                    </button>
+                    <button mat-raised-button class="ml20" color="accent"
+                        (click) = "deleteQuestion(question['quesId'])"
+                        >
+                        Delete
+                    </button>
+                </div>
             </mat-card>
         </div>
     </div>

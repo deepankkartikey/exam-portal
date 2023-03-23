@@ -18,4 +18,12 @@ export class QuestionService {
     console.log("Inside addQuestion API")
     return this._http.post(`${baseUrl}/question/`, question)
   }
+
+  public updateQuestion(question: any){
+    return this._http.put(`${baseUrl}/question/`, question)
+  }
+
+  public deleteQuestion(questionId: any){
+    return this._http.delete(`${baseUrl}/question/${questionId}`)
+  }
 }
