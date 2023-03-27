@@ -37,6 +37,8 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
 import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,8 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
     MatListModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularEditorModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
