@@ -22,11 +22,15 @@
                             name="content"
                             ></textarea>
                         </mat-form-field> -->
-                        <angular-editor 
-                        [placeholder]="'Enter your question here!'" 
-                        [(ngModel)]="question['content']"
-                        name="content"
-                        ></angular-editor>
+                        <div class="NgxEditor__Wrapper">
+                            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                            <ngx-editor 
+                                [editor]="editor" 
+                                [(ngModel)]="question['content']" 
+                                name="content"
+                                [disabled]="false" 
+                                [placeholder]="'Enter Question details here...'"></ngx-editor>
+                          </div>
                         <!-- options -->
                         <div class="row">
                             <div class="col-md-6">
