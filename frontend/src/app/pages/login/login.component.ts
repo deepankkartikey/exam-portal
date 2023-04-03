@@ -60,7 +60,8 @@ export class LoginComponent implements OnInit {
             }
             else if(this.login.getUserRole() == "NORMAL"){
               // redirect normal user dashboard
-              window.location.href='/user-dashboard'
+              // All quizzes loaded when normal user logs in. - hence 0 (categoryID) is passed
+              window.location.href='/user-dashboard/0'
             }
             else{
               // logout
