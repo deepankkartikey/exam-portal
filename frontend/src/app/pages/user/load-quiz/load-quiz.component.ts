@@ -23,6 +23,8 @@ export class LoadQuizComponent implements OnInit {
       this.categoryId = params['categoryId']
       if(this.categoryId == 0){
         // Load All Quizzes
+        console.log("Loading all quizzes ...")
+        // quizzes() should be replaced by getActiveQuizzes()
         this._quiz.quizzes().subscribe(
           (data: any)=>{
             this.quizzes = data
@@ -36,6 +38,7 @@ export class LoadQuizComponent implements OnInit {
         else {
           // Load Specific Category quizzes with CategoryID
           console.log("Loading Specific Category Quizzes by Category ID... ")
+          // getQuizzesOfCategory() should be replaced by getActiveQuizzesOfCategory()
           this._quiz.getQuizzesOfCategory(this.categoryId).subscribe(
             (data)=>{
               this.quizzes = data;
