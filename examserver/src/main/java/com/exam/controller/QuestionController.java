@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import com.exam.model.exam.Category;
 import com.exam.model.exam.Question;
 import com.exam.model.exam.Quiz;
 import com.exam.service.QuestionService;
@@ -74,5 +75,19 @@ public class QuestionController {
         }
         Collections.shuffle(list);
         return ResponseEntity.ok(list);
+    }
+
+    // get active quizzes
+    @GetMapping("/active")
+    public List<Quiz> getActiveQuizzes(){
+        return this.quizService.getActiveQuizzes();
+    }
+
+    // get active quizzes of specific category
+    @GetMapping("/category/active/{categoryId}")
+    public List<Quiz> getActiveQuizzes(@PathVariable("categoryId") Long categoryId){
+        Category category = new Category();
+        category.setCid(categoryId);
+        return this.quizService.getActiveQuizzesOfCategory(category);
     }
 }

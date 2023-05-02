@@ -17,6 +17,7 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 
 const routes: Routes = [
   {
@@ -88,6 +89,10 @@ const routes: Routes = [
       {
         path: ':categoryId',
         component: LoadQuizComponent
+      },
+      {
+        path: 'instructions/:quizId',
+        component: InstructionsComponent
       }
     ]
   }

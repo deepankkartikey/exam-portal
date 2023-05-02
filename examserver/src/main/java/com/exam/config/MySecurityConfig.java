@@ -60,7 +60,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/generate-token", "/current-user", "/user/", "/category/", "/quiz/*",
                         "/question/*", "/question/quiz/all/*",
-                        "/quiz/category/*").permitAll()
+                        "/quiz/category/*", "/quiz/active", "/quiz/category/active/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
