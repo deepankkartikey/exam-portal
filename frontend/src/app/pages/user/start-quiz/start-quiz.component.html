@@ -1,0 +1,64 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- Instructions -->
+                <h3>Instructions</h3>
+            </div>
+            <div class="col-md-8">
+                <!-- questions -->
+                <ng-container *ngIf="questions">
+                    <h1 class="mt20">On Going Quiz: <b> {{ questions[0]['quiz']['title'] }} </b></h1>
+    
+                </ng-container>
+                <mat-card *ngFor="let question of questions; let i=index" class="mt20">
+                    <mat-card-content>
+                        <p>
+                            <b>Q{{ i+1 }})</b> 
+                            <span class="ml10" 
+                            [innerHTML]="question['content']"></span>
+                        </p>
+                        <mat-divider></mat-divider>
+                        <div class="row mt10">
+                            <div class="col-md-6">
+                                <input type="radio" 
+                                [name]="i" 
+                                [value]="question['option1']">
+                                {{ question['option1'] }}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" 
+                                [name]="i" 
+                                [value]="question['option2']">
+                                {{ question['option2'] }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" 
+                                [name]="i" 
+                                [value]="question['option1']">
+                                {{ question['option3'] }}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" 
+                                [name]="i" 
+                                [value]="question['option1']">
+                                {{ question['option4'] }}
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="container text-center mt20 mb20">
+                    <button 
+                    mat-raised-button color="primary">
+                        Submit Quiz
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <!-- Progress -->
+            </div>
+        </div>
+    </div>
+</div>

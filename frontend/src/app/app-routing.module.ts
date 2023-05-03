@@ -18,6 +18,7 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component';
 
 const routes: Routes = [
   {
@@ -93,8 +94,13 @@ const routes: Routes = [
       {
         path: 'instructions/:quizId',
         component: InstructionsComponent
-      }
+      },
     ]
+  },
+  {
+    path: 'start/:quizId',
+    component: StartQuizComponent,
+    canActivate: [NormalGuard]
   }
 ];
 

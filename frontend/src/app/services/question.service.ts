@@ -9,10 +9,15 @@ export class QuestionService {
 
   constructor(private _http: HttpClient) { }
 
-  // get questions of specific quiz
+  // get all questions of specific quiz
   public getQuestionsOfQuiz(quizId: any){
     return this._http.get(`${baseUrl}/question/quiz/all/${quizId}`)
   }
+
+    // get all questions of specific quiz
+    public getQuestionsOfQuizForTest(quizId: any){
+      return this._http.get(`${baseUrl}/question/quiz/${quizId}`)
+    }
 
   public addQuestion(question: any){
     console.log("Inside addQuestion API")
