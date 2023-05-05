@@ -14,6 +14,12 @@ export class StartQuizComponent implements OnInit {
   quizId: any;
   questions: any;
 
+  marksObtained = 0;
+  questionsAttempted = 0;
+  correctAnswers = 0;
+
+  isSubmit = false;
+
   constructor(private _locationStrategy: LocationStrategy,
     private _route: ActivatedRoute,
     private _question: QuestionService) { }
@@ -36,13 +42,54 @@ export class StartQuizComponent implements OnInit {
   loadQuestions(quizId: any){
     this._question
     .getQuestionsOfQuizForTest(this.quizId)
-    .subscribe((data)=>{
+    .subscribe((data: any)=>{
       // console.log(data)
       this.questions = data;
+      this.questions.forEach((question: any) => {
+        question['selectedAnswer'] = ''
+      });
+      console.log(this.questions)
     },
     (error)=>{
       console.log(error)
       Swal.fire("Error", "Error in loading questions of quiz!", "error")
+    })
+  }
+
+  // calculates marks, correct answers and questions attempted
+  submitQuiz(){
+    Swal.fire({
+      title: 'Do you want to Submit the quiz?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+      icon: 'info'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.isSubmit = true;
+        // do calculation if user confirmed to submit quiz
+        console.log(this.questions)
+        this.questions.forEach((question: { [x: string]: any; })=>{
+          if(question['selectedAnswer'] == question['ans']){
+            this.correctAnswers += 1;
+            let singleQuestionMarks = 
+                              (Number(this.questions[0]['quiz']['maxMarks'])/this.questions.length);
+            // console.log(typeof this.questions[0]['quiz']['maxMarks'])
+            // console.log(this.questions.length)
+            this.marksObtained += singleQuestionMarks;
+          }
+
+          if(question['selectedAnswer'].trim() != ''){
+            this.questionsAttempted += 1;
+          }
+        })
+        console.log("Questions Attempted: ", this.questionsAttempted)
+        console.log("Correct Answers: ", this.correctAnswers)
+        console.log("Marks Obtained: ", this.marksObtained)
+      } 
+      else if (result.isDenied) {
+        Swal.fire('Quiz not submitted!', '', 'info')
+      }
     })
   }
 }

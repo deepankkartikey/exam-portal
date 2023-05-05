@@ -1,4 +1,4 @@
-<div class="bootstrap-wrapper">
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
@@ -22,28 +22,32 @@
                         <div class="row mt10">
                             <div class="col-md-6">
                                 <input type="radio" 
-                                [name]="i" 
-                                [value]="question['option1']">
+                                [value]="question['option1']"
+                                [name]="i.toString()"
+                                [(ngModel)]="question['selectedAnswer']"/>
                                 {{ question['option1'] }}
                             </div>
                             <div class="col-md-6">
                                 <input type="radio" 
-                                [name]="i" 
-                                [value]="question['option2']">
+                                [name]="i.toString()" 
+                                [value]="question['option2']"
+                                [(ngModel)]="question['selectedAnswer']"/>
                                 {{ question['option2'] }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="radio" 
-                                [name]="i" 
-                                [value]="question['option1']">
+                                [name]="i.toString()" 
+                                [value]="question['option3']"
+                                [(ngModel)]="question['selectedAnswer']"/>
                                 {{ question['option3'] }}
                             </div>
                             <div class="col-md-6">
                                 <input type="radio" 
-                                [name]="i" 
-                                [value]="question['option1']">
+                                [name]="i.toString()" 
+                                [value]="question['option4']"
+                                [(ngModel)]="question['selectedAnswer']"/>
                                 {{ question['option4'] }}
                             </div>
                         </div>
@@ -51,7 +55,8 @@
                 </mat-card>
                 <div class="container text-center mt20 mb20">
                     <button 
-                    mat-raised-button color="primary">
+                    mat-raised-button color="primary"
+                    (click)="submitQuiz()">
                         Submit Quiz
                     </button>
                 </div>
@@ -59,6 +64,36 @@
             <div class="col-md-2">
                 <!-- Progress -->
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Showing the result to user -->
+<div class="bootstrap-wrapper" *ngIf="isSubmit">
+    <div class="row mt20">
+        <div class="col-md-6 offset-md-3">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title class="text-center">
+                        Quiz Result
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="text-center">
+                    <!-- <h1>Total Questions: {{ questions.length }}</h1> -->
+                    <h1>Question Attemted: {{ questionsAttempted }}</h1>
+                    <h1>Correct Answers: {{ correctAnswers }}</h1>
+                    <h1>Marks Obtained: {{ marksObtained }}</h1>
+                </mat-card-content>
+                <mat-card-actions class="text-center">
+                    <button mat-raised-button color="primary">Print</button>
+                    <button mat-raised-button 
+                    color="accent"
+                    [routerLink]="'/user-dashboard/0'">
+                    Home
+                    </button>
+                </mat-card-actions>
+            </mat-card>
         </div>
     </div>
 </div>
