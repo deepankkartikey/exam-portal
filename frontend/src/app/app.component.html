@@ -1,5 +1,13 @@
-<!-- Navbar is static content -->
-<app-navbar></app-navbar>
+<ngx-ui-loader
+fgsColor="#3f51b5"
+pbColor="#3f51b5"
+text="Loading..."></ngx-ui-loader>
 
-<!-- Everything except Navbar is dynamic content -->
-<router-outlet></router-outlet>
+<div ngxUiLoaderBlurred>
+    <!-- This page content will be blurred/frosted when foreground loader is showed -->
+    <!-- Navbar is static content -->
+    <app-navbar></app-navbar>
+
+    <!-- Everything except Navbar is dynamic content -->
+    <router-outlet></router-outlet>
+</div>
