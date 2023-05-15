@@ -20,6 +20,8 @@ export class StartQuizComponent implements OnInit {
 
   isSubmit = false;
 
+  timer: any;
+
   constructor(private _locationStrategy: LocationStrategy,
     private _route: ActivatedRoute,
     private _question: QuestionService) { }
@@ -45,10 +47,16 @@ export class StartQuizComponent implements OnInit {
     .subscribe((data: any)=>{
       // console.log(data)
       this.questions = data;
+      
+      // as soon as questions are loaded
+      // timer in seconds for the whole quiz is calculated
+      this.timer = this.questions.length * 2 * 60;
+
       this.questions.forEach((question: any) => {
         question['selectedAnswer'] = ''
       });
       console.log(this.questions)
+      this.startTimer();
     },
     (error)=>{
       console.log(error)
@@ -66,30 +74,55 @@ export class StartQuizComponent implements OnInit {
       icon: 'info'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.isSubmit = true;
-        // do calculation if user confirmed to submit quiz
-        console.log(this.questions)
-        this.questions.forEach((question: { [x: string]: any; })=>{
-          if(question['selectedAnswer'] == question['ans']){
-            this.correctAnswers += 1;
-            let singleQuestionMarks = 
-                              (Number(this.questions[0]['quiz']['maxMarks'])/this.questions.length);
-            // console.log(typeof this.questions[0]['quiz']['maxMarks'])
-            // console.log(this.questions.length)
-            this.marksObtained += singleQuestionMarks;
-          }
-
-          if(question['selectedAnswer'].trim() != ''){
-            this.questionsAttempted += 1;
-          }
-        })
-        console.log("Questions Attempted: ", this.questionsAttempted)
-        console.log("Correct Answers: ", this.correctAnswers)
-        console.log("Marks Obtained: ", this.marksObtained)
+        // submit quiz only when user confirms
+        this.evalQuiz()
       } 
       else if (result.isDenied) {
         Swal.fire('Quiz not submitted!', '', 'info')
       }
     })
+  }
+
+  startTimer(){
+    let t: any = window.setInterval(() => {
+      // this code is called after every 1 second or 1000 milliseconds
+      if(this.timer <= 0){
+        this.evalQuiz()
+        clearInterval(t);
+      }
+      else{
+        this.timer--;
+      }
+    }, 1000)
+  }
+
+  getFormattedTime(){
+    let minutes = Math.floor(this.timer/60)
+    let seconds = this.timer-minutes*60
+    return `${minutes} min : ${seconds} sec`;
+  }
+
+  // submit quiz automatically
+  evalQuiz(){
+    this.isSubmit = true;
+    // do calculation if user confirmed to submit quiz
+    console.log(this.questions)
+    this.questions.forEach((question: { [x: string]: any; })=>{
+      if(question['selectedAnswer'] == question['ans']){
+        this.correctAnswers += 1;
+        let singleQuestionMarks = 
+                          (Number(this.questions[0]['quiz']['maxMarks'])/this.questions.length);
+        // console.log(typeof this.questions[0]['quiz']['maxMarks'])
+        // console.log(this.questions.length)
+        this.marksObtained += singleQuestionMarks;
+      }
+
+      if(question['selectedAnswer'].trim() != ''){
+        this.questionsAttempted += 1;
+      }
+    })
+    console.log("Questions Attempted: ", this.questionsAttempted)
+    console.log("Correct Answers: ", this.correctAnswers)
+    console.log("Marks Obtained: ", this.marksObtained)
   }
 }
