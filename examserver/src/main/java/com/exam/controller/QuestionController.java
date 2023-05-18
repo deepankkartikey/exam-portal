@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -89,5 +86,38 @@ public class QuestionController {
         Category category = new Category();
         category.setCid(categoryId);
         return this.quizService.getActiveQuizzesOfCategory(category);
+    }
+
+    // evaluate quiz
+    @PostMapping("/eval-quiz")
+    public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions){
+        System.out.println(questions);
+        Integer questionsAttempted = 0;
+        Double marksObtained = 0.0;
+        Integer correctAnswers = 0;
+        for(Question questionFromClient: questions) {
+            // single question
+            Question questionFromDB = this.questionService.getQuestion(questionFromClient.getQuesId());
+            if (questionFromDB.getAns().equals(questionFromClient.getSelectedAnswer())) {
+                // correct answer was selected
+                correctAnswers++;
+
+                double marksForSingleQuestion = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks())
+                        /questions.size();
+
+                marksObtained += marksForSingleQuestion;
+            }
+
+            if(questionFromClient.getSelectedAnswer() != null){
+                questionsAttempted++;
+            }
+        }
+
+        Map<String, Object> resultMap = Map.of(
+                "marksObtained", marksObtained,
+                "correctAnswers", correctAnswers,
+                "questionsAttempted", questionsAttempted);
+
+        return ResponseEntity.ok(resultMap);
     }
 }

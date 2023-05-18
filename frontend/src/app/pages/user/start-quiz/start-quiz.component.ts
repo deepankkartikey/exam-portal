@@ -52,9 +52,10 @@ export class StartQuizComponent implements OnInit {
       // timer in seconds for the whole quiz is calculated
       this.timer = this.questions.length * 2 * 60;
 
-      this.questions.forEach((question: any) => {
-        question['selectedAnswer'] = ''
-      });
+      // this.questions.forEach((question: any) => {
+      //   question['selectedAnswer'] = ''
+      // });
+
       console.log(this.questions)
       this.startTimer();
     },
@@ -104,25 +105,20 @@ export class StartQuizComponent implements OnInit {
 
   // submit quiz automatically
   evalQuiz(){
-    this.isSubmit = true;
-    // do calculation if user confirmed to submit quiz
-    console.log(this.questions)
-    this.questions.forEach((question: { [x: string]: any; })=>{
-      if(question['selectedAnswer'] == question['ans']){
-        this.correctAnswers += 1;
-        let singleQuestionMarks = 
-                          (Number(this.questions[0]['quiz']['maxMarks'])/this.questions.length);
-        // console.log(typeof this.questions[0]['quiz']['maxMarks'])
-        // console.log(this.questions.length)
-        this.marksObtained += singleQuestionMarks;
+    // call backend server to evaluate quiz on the SERVER-SIDE
+    this._question.evalQuiz(this.questions).subscribe(
+      (data: any)=>{
+        // console.log(data)
+        this.questionsAttempted = data['questionsAttempted'];
+        this.correctAnswers = data['correctAnswers'];
+        this.marksObtained = data['marksObtained'];
+        
+        this.isSubmit = true;
+      },
+      (error)=>{
+        console.log(error)
       }
+    )
 
-      if(question['selectedAnswer'].trim() != ''){
-        this.questionsAttempted += 1;
-      }
-    })
-    console.log("Questions Attempted: ", this.questionsAttempted)
-    console.log("Correct Answers: ", this.correctAnswers)
-    console.log("Marks Obtained: ", this.marksObtained)
   }
 }

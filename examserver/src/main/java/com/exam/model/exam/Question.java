@@ -18,6 +18,9 @@ public class Question {
     private String option4;
     private String ans;
 
+    @Transient
+    private String selectedAnswer;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Quiz quiz;
 
@@ -94,5 +97,13 @@ public class Question {
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
+    }
+
+    public String getSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(String selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
     }
 }
